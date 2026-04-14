@@ -319,44 +319,67 @@ body {
   border-radius: 12px;
 }
 
-/* ─── Acciones tabla ───────────────────────────────────────── */
+/* ─── Botones de acción en tabla ────────────────────────────── */
 .celda-acciones {
   display: flex;
-  gap: .45rem;
+  align-items: center;
+  gap: .7rem;
+  min-width: 150px;
 }
 
 .btn-accion {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.06);
-  cursor: pointer;
-  font-size: .95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 78px;
+  height: 38px;
+  padding: 0 .9rem;
   border-radius: 12px;
-  transition: .18s ease;
-  color: var(--txt2);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+  background: rgba(255,255,255,.04);
+  color: var(--txt);
+  white-space: nowrap;
 }
 
 .btn-accion:hover {
   transform: translateY(-1px);
-  color: #fff;
+}
+
+/* Editar */
+.btn-editar {
+  background: rgba(79,140,255,.10);
+  color: #a9c7ff;
+  border-color: rgba(79,140,255,.22);
 }
 
 .btn-editar:hover {
-  background: rgba(79,140,255,.16);
-  border-color: rgba(79,140,255,.24);
+  background: rgba(79,140,255,.18);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(79,140,255,.18);
 }
 
-.btn-eliminar:hover {
-  background: rgba(255,95,122,.14);
+/* Eliminar */
+.btn-eliminar {
+  background: rgba(255,95,122,.10);
+  color: #ff9fb0;
   border-color: rgba(255,95,122,.22);
 }
 
+.btn-eliminar:hover {
+  background: rgba(255,95,122,.18);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(255,95,122,.18);
+}
+
 .btn-accion:disabled {
-  opacity: .4;
+  opacity: .45;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* ─── Superficies / tarjetas ───────────────────────────────── */
