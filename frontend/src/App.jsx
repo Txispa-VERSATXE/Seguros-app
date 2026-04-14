@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <span className="brand-nombre">SeguroAuto</span>
+        <span className="brand-nombre">NeuroDrive</span>
         <span className="brand-sub">Gestión de pólizas</span>
       </div>
       <div className="navbar-links">
