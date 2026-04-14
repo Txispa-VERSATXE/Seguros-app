@@ -129,22 +129,9 @@ export default function TablaPolizas({ onEditar }) {
                       {p.siniestro === 1 ? "Sí" : "No"}
                     </span>
                   </td>
-                  <td className="celda-acciones">
-                    <button
-                      className="btn-accion btn-editar"
-                      onClick={() => onEditar(p)}
-                      title="Editar póliza"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="btn-accion btn-eliminar"
-                      onClick={() => handleEliminar(p.id_poliza)}
-                      disabled={eliminando === p.id_poliza}
-                      title="Eliminar póliza"
-                    >
-                      Eliminar
-                    </button>
+                  <td class="celda-acciones">
+                    <button class="btn-accion btn-editar"> Editar</button>
+                    <button class="btn-accion btn-eliminar">Eliminar</button>
                   </td>
                 </tr>
               ))
