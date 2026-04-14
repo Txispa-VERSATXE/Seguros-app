@@ -8,7 +8,7 @@
 
 /* ─── Variables ───────────────────────────────────────────── */
 :root {
-  --bg:            #081120;
+  --bg:            #3a3c97;
   --bg-soft:       #0d1728;
   --panel:         rgba(18, 28, 46, 0.82);
   --panel-strong:  rgba(14, 22, 36, 0.95);
@@ -62,11 +62,7 @@ body {
   min-height: 100vh;
   color: var(--txt);
   line-height: 1.6;
-  background:
-    radial-gradient(circle at top left, rgba(79, 140, 255, 0.18), transparent 32%),
-    radial-gradient(circle at top right, rgba(108, 99, 255, 0.16), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(0, 194, 168, 0.12), transparent 24%),
-    linear-gradient(180deg, #07101d 0%, #091321 45%, #07111d 100%);
+  background: var(--bg);
 }
 
 /* ─── Scrollbar ────────────────────────────────────────────── */
@@ -351,7 +347,7 @@ body {
 
 /* Editar */
 .btn-editar {
-  background: rgba(79,140,255,.10);
+  background: rgba(77, 255, 0, 0.515);
   color: #a9c7ff;
   border-color: rgba(79,140,255,.22);
 }
@@ -364,7 +360,7 @@ body {
 
 /* Eliminar */
 .btn-eliminar {
-  background: rgba(255,95,122,.10);
+  background: rgba(255, 3, 3, 0.76);
   color: #ff9fb0;
   border-color: rgba(255,95,122,.22);
 }
@@ -585,25 +581,25 @@ body {
 }
 
 .badge-auto {
-  background: rgba(79,140,255,.12);
+  background: rgba(5, 72, 244, 0.83);
   color: #a8c6ff;
   border-color: rgba(79,140,255,.18);
 }
 
 .badge-manual {
-  background: rgba(108,99,255,.14);
+  background: rgba(222, 30, 209, 0.359);
   color: #beb6ff;
   border-color: rgba(108,99,255,.2);
 }
 
 .badge-electrico {
-  background: rgba(31,211,155,.13);
+  background: rgba(35, 143, 46, 0.472);
   color: #7cf0c8;
   border-color: rgba(31,211,155,.18);
 }
 
 .badge-combustion {
-  background: rgba(255,182,72,.14);
+  background: rgba(108, 107, 105, 0.551);
   color: #ffd086;
   border-color: rgba(255,182,72,.18);
 }
@@ -962,4 +958,74 @@ body {
     min-width: auto;
     text-align: left;
   }
+}
+
+
+
+
+.form-eliminar {
+  margin-top: 1rem;
+}
+
+.form-eliminar-id {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+
+.form-eliminar-id label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--txt2);
+  letter-spacing: .03em;
+}
+
+.form-eliminar-fila {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.input-id-eliminar {
+  min-width: 180px;
+  height: 42px;
+  padding: 0 .9rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 12px;
+  color: var(--txt);
+  font-size: .92rem;
+  outline: none;
+  transition: .2s ease;
+}
+
+.input-id-eliminar:focus {
+  border-color: rgba(255,95,122,.45);
+  box-shadow: 0 0 0 4px rgba(255,95,122,.10);
+}
+
+.btn-eliminar-form {
+  height: 42px;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff4d67 0%, #e11d2e 100%);
+  color: white;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.btn-eliminar-form:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(225, 29, 46, .22);
+}
+
+.btn-eliminar-form:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }

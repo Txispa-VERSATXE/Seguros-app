@@ -12,6 +12,7 @@ export default function TablaPolizas({ onEditar }) {
     if (!window.confirm(`¿Seguro que deseas eliminar la póliza ${id}?`)) return;
     setEliminando(id);
     setMensajeError("");
+
     try {
       await eliminarPoliza(id);
     } catch (err) {
@@ -44,6 +45,8 @@ export default function TablaPolizas({ onEditar }) {
   return (
     <div className="tabla-container">
       <div className="tabla-controles">
+
+        {/* BUSCADOR */}
         <div className="busqueda-wrapper">
           <input
             type="text"
@@ -53,31 +56,52 @@ export default function TablaPolizas({ onEditar }) {
             className="input-busqueda"
           />
           {busqueda && (
-            <button className="btn-limpiar" onClick={() => setBusqueda("")}>✕</button>
+            <button className="btn-limpiar" onClick={() => setBusqueda("")}>
+              ✕
+            </button>
           )}
         </div>
 
-        <form className="eliminar-manual" onSubmit={handleEliminarManual}>
-          <input
-            type="text"
-            placeholder="ID póliza a eliminar"
-            value={idEliminarManual}
-            onChange={(e) => setIdEliminarManual(e.target.value)}
-            className="input-id-eliminar"
-            maxLength={7}
-          />
-          <button type="submit" className="btn btn-danger-outline" disabled={!idEliminarManual}>
-            Eliminar por ID
-          </button>
-        </form>
+        {/* FORM ELIMINAR POR ID */}
+        <div className="form-eliminar">
+          <form className="form-eliminar-id" onSubmit={handleEliminarManual}>
+            <label htmlFor="idEliminar">Eliminar póliza por ID:</label>
+
+            <div className="form-eliminar-fila">
+              <input
+                id="idEliminar"
+                type="text"
+                placeholder="ID00001"
+                value={idEliminarManual}
+                onChange={(e) => setIdEliminarManual(e.target.value)}
+                className="input-id-eliminar"
+                maxLength={7}
+              />
+
+              <button
+                type="submit"
+                className="btn-eliminar-form"
+                disabled={!idEliminarManual}
+              >
+                Eliminar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
-      {mensajeError && <div className="alerta alerta-error">{mensajeError}</div>}
+      {/* ERROR */}
+      {mensajeError && (
+        <div className="alerta alerta-error">{mensajeError}</div>
+      )}
 
+      {/* INFO */}
       <div className="tabla-info">
-        Mostrando <strong>{polizasFiltradas.length}</strong> de <strong>{polizas.length}</strong> pólizas
+        Mostrando <strong>{polizasFiltradas.length}</strong> de{" "}
+        <strong>{polizas.length}</strong> pólizas
       </div>
 
+      {/* TABLA */}
       <div className="tabla-scroll">
         <table className="tabla-polizas">
           <thead>
@@ -96,16 +120,22 @@ export default function TablaPolizas({ onEditar }) {
               <th>Acciones</th>
             </tr>
           </thead>
+
           <tbody>
             {polizasFiltradas.length === 0 ? (
               <tr>
                 <td colSpan={12} className="tabla-vacia">
-                  {busqueda ? "No se encontraron resultados" : "No hay pólizas registradas"}
+                  {busqueda
+                    ? "No se encontraron resultados"
+                    : "No hay pólizas registradas"}
                 </td>
               </tr>
             ) : (
               polizasFiltradas.map((p) => (
-                <tr key={p.id_poliza} className={eliminando === p.id_poliza ? "fila-eliminando" : ""}>
+                <tr
+                  key={p.id_poliza}
+                  className={eliminando === p.id_poliza ? "fila-eliminando" : ""}
+                >
                   <td className="celda-id">{p.id_poliza}</td>
                   <td className="celda-matricula">{p.matricula}</td>
                   <td>{p.vigencia} m</td>
@@ -113,25 +143,54 @@ export default function TablaPolizas({ onEditar }) {
                   <td>{p.edad_tomador} a</td>
                   <td>{p.cilindrada} cc</td>
                   <td>{p.cilindros}</td>
+
                   <td>
-                    <span className={`badge badge-${p.transmision === "Automática" ? "auto" : "manual"}`}>
+                    <span
+                      className={`badge badge-${
+                        p.transmision === "Automática" ? "auto" : "manual"
+                      }`}
+                    >
                       {p.transmision}
                     </span>
                   </td>
+
                   <td>
-                    <span className={`badge badge-${p.comb_electrico === "Eléctrico" ? "electrico" : "combustion"}`}>
+                    <span
+                      className={`badge badge-${
+                        p.comb_electrico === "Eléctrico"
+                          ? "electrico"
+                          : "combustion"
+                      }`}
+                    >
                       {p.comb_electrico}
                     </span>
                   </td>
+
                   <td>{p.peso}</td>
+
                   <td>
-                    <span className={`badge badge-siniestro-${p.siniestro}`}>
+                    <span
+                      className={`badge badge-siniestro-${p.siniestro}`}
+                    >
                       {p.siniestro === 1 ? "Sí" : "No"}
                     </span>
                   </td>
-                  <td class="celda-acciones">
-                    <button class="btn-accion btn-editar"> Editar</button>
-                    <button class="btn-accion btn-eliminar">Eliminar</button>
+
+                  <td className="celda-acciones">
+                    <button
+                      className="btn-accion btn-editar"
+                      onClick={() => onEditar(p)}
+                    >
+                      Editar
+                    </button>
+
+                    <button
+                      className="btn-accion btn-eliminar"
+                      onClick={() => handleEliminar(p.id_poliza)}
+                      disabled={eliminando === p.id_poliza}
+                    >
+                      Eliminar
+                    </button>
                   </td>
                 </tr>
               ))
