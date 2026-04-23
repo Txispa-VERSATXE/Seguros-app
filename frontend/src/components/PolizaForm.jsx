@@ -22,7 +22,7 @@ const CAMPO_PLACEHOLDERS = {
   edad_coche: "0 - 10",
   edad_tomador: "18 - 90",
   cilindrada: "En cc (p.ej. 1200)",
-  cilindros: "Nº de cilindros",
+  cilindros: "1 - 20",
   peso: "En kg (p.ej. 1250)",
 };
 
@@ -251,6 +251,7 @@ export default function PolizaForm({ inicial = null, onExito, onCancelar }) {
             onChange={handleChange}
             placeholder={CAMPO_PLACEHOLDERS.cilindros}
             min={1}
+            max={20}
             className={errores.cilindros ? "input-error" : ""}
           />
           <CampoError mensaje={errores.cilindros} />

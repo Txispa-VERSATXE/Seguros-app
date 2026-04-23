@@ -147,8 +147,8 @@ export function PolizasProvider({ children }) {
 
     if (!datos.cilindros && datos.cilindros !== 0) {
       errores.cilindros = "El número de cilindros es obligatorio";
-    } else if (parseInt(datos.cilindros) <= 0) {
-      errores.cilindros = "El número de cilindros debe ser positivo";
+    } else if (parseInt(datos.cilindros) <= 0 || parseInt(datos.cilindros) > 20) {
+      errores.cilindros = "El número de cilindros debe estar entre 1 y 20";
     }
 
     if (!datos.transmision) {
